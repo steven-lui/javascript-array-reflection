@@ -1,0 +1,1 @@
+class MailImg{constructor(i="",t="",l=""){this.mailTo=i,this.mailBy=t,this.imgUrl=l}get mailTo(){return this.mailTo}get mailBy(){return this.mailBy}get imgUrl(){return this.imgUrl}set mailTo(i){return this.newEmail}set mailBy(i){return this.newEmail}set imgUrl(i){this.imgUrl=i}}
