@@ -5,11 +5,15 @@ const getRandomID = function () { return Math.floor(Math.random() * idMax) + 1; 
 
 function setImage(xml) {
     // parse
-    let listObject = JSON.parse(xml.responseText);
+    let obj = JSON.parse(xml.responseText);
+
+    //image size
+    // let width = $('.container').width();
+    let width = 1200;
 
     // set HTML
-    $(htmlTag).attr('src', `https://picsum.photos/id/${listObject.id}/300/300`);
-    $(`${htmlTag}-caption`).text(`Image by ${listObject.author}`);
+    $(htmlTag).attr('src', `https://picsum.photos/id/${obj.id}/${width}/${width}`);
+    $(htmlTag).text('alt', `Image by ${obj.author}`);
 }
 
 function getRandomImage() {

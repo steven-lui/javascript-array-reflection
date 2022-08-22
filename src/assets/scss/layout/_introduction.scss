@@ -1,0 +1,19 @@
+h1 {
+    font-size: 3em;
+}
+
+ul {
+    max-width: max-content;
+
+    .list-group-item {
+        &-success::before {
+            content: '\2713';
+            padding-right: 1em;
+        }
+
+        &-danger::before {
+            content: '\01F5D9';
+            padding-right: 1em;
+        }
+    }
+}

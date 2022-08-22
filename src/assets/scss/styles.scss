@@ -11,9 +11,6 @@
 @import "../../../node_modules/bootstrap/scss/variables";
 
 // 4. Include any default map overrides here
-ul {
-    width: max-content;
-}
 
 // 5. Include remainder of required parts
 @import "../../../node_modules/bootstrap/scss/maps";
@@ -36,3 +33,4 @@ ul {
 
 // 8. Add additional custom code here
 @import "layout/base";
+@import "layout/introduction";
