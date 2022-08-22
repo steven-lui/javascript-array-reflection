@@ -6,7 +6,7 @@ const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
 const uglifycss = require('gulp-uglifycss');
 const htmlmin = require('gulp-htmlmin');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es').default;
 
 //GENERATE
 function generateSASS() {
