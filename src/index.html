@@ -23,10 +23,10 @@
                         from <a href="https://picsum.photos/" target="_blank" rel="noopener noreferrer">Lorem Picsum</a>
                         and displays on a web page.
                     </li>
-                    <li class="list-group-item list-group-item-danger">
+                    <li class="list-group-item list-group-item-warning">
                         The image can then be assigned to an email address.
                     </li>
-                    <li class="list-group-item list-group-item-danger">
+                    <li class="list-group-item list-group-item-warning">
                         Your webpage should contain an input field that accepts an email address, which is validated.
                     </li>
                     <li class="list-group-item list-group-item-danger">
@@ -40,7 +40,7 @@
                         The interface is to display all images assigned to each email address, the email address should
                         only display once.
                     </li>
-                    <li class="list-group-item list-group-item-danger">
+                    <li class="list-group-item list-group-item-warning">
                         The website is to be styled and professional looking, making it a good portfolio piece for
                         potential employers.
                     </li>
@@ -51,28 +51,34 @@
                 </ul>
             </div>
         </section>
-
-        <section id="image">
-            <div class="container">
-                <img class="img-fluid" id="picsum-img">
-            </div>
-        </section>
-
-        <section id="email">
-            <form>
-                <div class="container">
-                    <div class="row gx-5">
-                        <div class="col-lg-8">
-                            <label for="user-email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="user-email">
+        <div class="container" style="padding:0;">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <section id="image">
+                        <div class="container">
+                            <img class="img-fluid" id="picsum-img">
                         </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-            </form>
-        </section>
+                <div class="col-md">
+                    <section id="email">
+                        <form>
+                            <div class="container">
+                                <div class="row gy-3">
+                                    <div class="col-lg-8">
+                                        <label for="user-email" class="form-label">Email address</label>
+                                        <input type="email" class="form-control" id="user-email">
+                                    </div>
+                                    <div class="col mt-lg-auto">
+                                        <button value="POST" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer></footer>

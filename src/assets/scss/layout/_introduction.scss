@@ -8,11 +8,17 @@ ul {
     .list-group-item {
         &-success::before {
             content: '\2713';
-            padding-right: 1em;
         }
 
         &-danger::before {
             content: '\01F5D9';
+        }
+
+        &-warning::before {
+            content: '\2014';
+        }
+
+        &::before {
             padding-right: 1em;
         }
     }
