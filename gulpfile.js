@@ -14,14 +14,14 @@ function generateSASS() {
         .pipe(sass().on('error', sass.logError)) //compile
         .pipe(uglifycss({ "uglyComments": true })) //uglify
         .pipe(rename({ suffix: '.min' })) //[...].min.css
-        .pipe(dest('dist/css'));//pipe
+        .pipe(dest('dist/assets/css'));//pipe
 }
 
 function generateCSS() {
     return src('src/assets/css/**/*')
         .pipe(uglifycss({ "uglyComments": true }))
         .pipe(rename({ suffix: '.min' })) //[...].min.css
-        .pipe(dest('dist/css'));
+        .pipe(dest('dist/assets/css'));
 }
 
 function generateHTML() {
@@ -32,13 +32,13 @@ function generateHTML() {
 
 function generateIMG() {
     return src('src/assets/img/**/*')
-        .pipe(dest('dist/img'));
+        .pipe(dest('dist/assets/img'));
 }
 
 function generateJS() {
     return src('src/assets/js/**/*')
         .pipe(uglify()) //uglify
-        .pipe(dest('dist/js'));
+        .pipe(dest('dist/assets/js'));
 }
 
 // WATCH
@@ -52,6 +52,7 @@ function watchFiles() {
 
 //DEFAULT
 exports.default = series(
-    parallel(generateSASS, generateHTML, generateIMG, generateCSS, generateJS), //build all
+    parallel(generateSASS, generateHTML, generateIMG, generateJS), //build all
+    // parallel(generateSASS, generateHTML, generateIMG, generateCSS, generateJS), //build all
     watchFiles
 );

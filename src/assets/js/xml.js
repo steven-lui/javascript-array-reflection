@@ -30,7 +30,7 @@ function getRandomImage() {
     };
 
     // call
-    xml.open('GET', `https://picsum.photos/id/${getRandomID()}/info`);
+    xml.open('GET', `https://picsum.photos/id/${getRandomID()}/info`, true);
     xml.send();
 };
 
