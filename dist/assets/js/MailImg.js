@@ -1,1 +1,0 @@
-class MailImg{constructor(i="",t="",s=""){this.mailTo=i,this.mailBy=t,this.urlList=[],addUrl(s)}get mailTo(){return this.mailTo}get mailBy(){return this.mailBy}get imgUrl(){return this.imgUrl}set mailTo(i){this.mailTo=i}set mailBy(i){this.mailBy=i}set urlList(i){this.urlList=i}addUrl=i=>{this.urlList.append(i)};removeUrl=i=>{this.urlList.splice(this.urlList.indexOf(i),1)}}
