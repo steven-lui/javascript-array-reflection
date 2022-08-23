@@ -1,9 +1,10 @@
 let idMax = 1082; //  check for higher IDs
 let htmlTag = '#picsum-img'; //  for jQuery
+let list = []; //list of MailImg
 
 const getRandomID = function () { return Math.floor(Math.random() * idMax) + 1; }
 
-function setImage(xml) {
+function newImageToHTML(xml) {
     // parse
     let obj = JSON.parse(xml.responseText);
 
@@ -24,7 +25,7 @@ function getRandomImage() {
     xml.onreadystatechange = function () {
         //good to go
         if (xml.readyState === 4 && xml.status === 200) {
-            setImage(this);
+            newImageToHTML(this);
         }
         //on a bad call, call itself
     };
