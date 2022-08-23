@@ -1,25 +1,27 @@
-h1 {
-    font-size: 3em;
-}
+#introduction {
+    h1 {
+        font-size: 3em;
+    }
 
-ul {
-    max-width: max-content;
+    ul {
+        max-width: max-content;
 
-    .list-group-item {
-        &-success::before {
-            content: '\2713';
-        }
+        .list-group-item {
+            &-success::before {
+                content: '\2713';
+            }
 
-        &-danger::before {
-            content: '\01F5D9';
-        }
+            &-danger::before {
+                content: '\01F5D9';
+            }
 
-        &-warning::before {
-            content: '\2014';
-        }
+            &-warning::before {
+                content: '\2014';
+            }
 
-        &::before {
-            padding-right: 1em;
+            &::before {
+                padding-right: 1em;
+            }
         }
     }
 }

@@ -1,15 +1,45 @@
 #email {
+    padding: 2em;
+    border: 1px solid $primary;
+    border-radius: 1em;
+
+    &>.container {
+        padding: 0;
+    }
+
+    button,
+    #list-add,
+    #list-add form,
+    #list-add .row,
+    #mail-list,
+    #mail-list table {
+        width: 100%;
+    }
+
     form {
         margin: 0;
         padding: 0;
 
-        &,
-        .row {
-            width: 100%;
-        }
+        // remove inner rounding  on button and text input
+        @include media-breakpoint-up(lg) {
+            #user-email {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
 
-        button {
-            width: 100%;
+            #add {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
         }
+    }
+
+    #list-add {
+        border-radius: 1em;
+        margin-bottom: 1rem;
+    }
+
+    [class*='col'] {
+        padding: 0;
     }
 }

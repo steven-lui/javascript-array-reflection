@@ -14,3 +14,14 @@ section {
     flex-direction: column;
     align-items: center;
 }
+
+img {
+    border-radius: 1em;
+    border: 1px solid $primary;
+}
+
+.picsum-img-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
