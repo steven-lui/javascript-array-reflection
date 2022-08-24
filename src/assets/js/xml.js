@@ -1,9 +1,10 @@
 'use strict';
 
 class MailImg {
-    constructor(mailTo = "", urlList = []) {
+    constructor(mailTo = "", url = "") {
         this._mailTo = mailTo;
-        this._urlList = urlList;
+        this._urlList = [];
+        this.addUrl(url);
     }
 
     //get
@@ -75,23 +76,58 @@ function getRandomImage() {
     // init
     let xhr = new XMLHttpRequest();
 
-    // assign behaviour
+    // preload behaviour
     xhr.onreadystatechange = function () {
-        // check status of current request
-        console.log(xhr.readyState);
+        /*  0   UNSENT	Client has been created. open() not called yet.
+            1	OPENED	open() has been called.
+            2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+            3	LOADING	Downloading; responseText holds partial data.
+            4	DONE	The operation is complete. */
+        switch (xhr.readyState) {
+            case 0:
+                console.log(xhr.readyState, "UNSENT");
+                break;
+            case 1:
+                console.log(xhr.readyState, "OPENED");
+                break;
+            case 2:
+                console.log(xhr.readyState, "HEADERS_RECEIVED");
+                break;
+            case 3:
+                console.log(xhr.readyState, "LOADING");
+                break;
+            case 4:
+                console.log(xhr.readyState, "DONE");
+                break;
+            default:
+                break;
+        }
 
-        // DONE
+        // REQUEST DONE
+        /* 1xx: Information
+        2xx: Successful
+        3xx: Redirection
+        4xx: Client Error
+        5xx: Server Error */
         if (xhr.readyState === 4) {
-            switch (xhr.status) {
-                case 200:
-                    console.log("Image found, moving to HTML");
-                    newImageToHTML(this);
-                    break;
-                case 404:
-                    console.log("404, Image not found");
-                    break;
-                default:
-                    break;
+            if (xhr.status >= 500) {
+                console.log(xhr.status, "Server error, please try again another time");
+            }
+            else if (xhr.status >= 400) {
+                console.log(xhr.status, "Client error, please refresh the page");
+            }
+            else if (xhr.status >= 300) {
+                console.log(xhr.status, "This request has been moved to another URL");
+            }
+            else if (xhr.status >= 200) {
+                console.log(xhr.status, "Request successful");
+                newImageToHTML(this);
+            }
+            else if (xhr.status >= 100) {
+                console.log(xhr.status, "Request successful");
+            }
+            else {
+                console.log(xhr.status, "Please check you have a stable internet connection before trying again");
             }
         }
     };
@@ -127,8 +163,9 @@ $(function () {
 
         //logic
         if (validateEmail($('#user-email').val())) {
-            //add to list
-            list.push(new MailImg($('#user-email').val(), [$('#picsum-img').attr("src")]));
+            //unshift to list, so that new entry is first
+            list.unshift(new MailImg($('#user-email').val(), $('#picsum-img').attr("src")));
+
             //display list in table
             displayTable();
 
