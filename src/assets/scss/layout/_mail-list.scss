@@ -1,7 +1,19 @@
 #mail-list {
+    td {
+        width: max-content;
+    }
+
     ul {
         list-style: none;
-        padding:0;
-        margin:0;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        float: right;
+        clear:both;
+        flex-wrap: wrap;
+
+        li {
+            margin-right: 1em;
+        }
     }
 }

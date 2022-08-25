@@ -93,7 +93,7 @@ function displayTable() {
         // add images
         element.idList.forEach(id => {
             // prepare list item element for image
-            let html = `<li><img class="img-fluid" id="image-${id}"></li>`;
+            let html = `<img id="image-${id}"></li>`;
             $(html).appendTo($(`#images-${element.mailTo}`));
 
             // append image
