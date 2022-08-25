@@ -23,7 +23,7 @@ export class MailImg {
     }
 
     //newest first
-    addId = id => this._idList.unshift(id);
+    addId = id => this._idList.push(id);
 
     removeiD = id => {
         // take the index of url

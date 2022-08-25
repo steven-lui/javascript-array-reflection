@@ -1,50 +1,18 @@
 'use strict';
 
 import { MailImg } from './MailImg.js';
+import { ajaxToImg } from './xhr.js';
 
-let idMax = 1082; //  check for higher IDs
-let list = []; //list of MailImg
+let mailList = []; //list of MailImg
 
-const getRandomID = () => Math.floor(Math.random() * idMax) + 1;
-
-function imageToHTML(data, htmlId, width, height) {
-    $(htmlId).attr('src', `https://picsum.photos/id/${data.id}/${width}/${height}`);
-    $(htmlId).text('alt', `Image by ${data.author}`);
-}
-
-// https://www.taniarascia.com/how-to-promisify-an-ajax-call/
-function ajaxRequest(type, url, data = {}) {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            url: url,
-            type: type,
-            data: data,
-            success: function (data) {
-                resolve(data);
-            },
-            error: function (error) {
-                reject(error);
-            },
-        })
-    });
-}
-
-/* creates ajax request to get an image from lorem picsum */
-function getImageToHTML(imgId = getRandomID(), htmlId = "#picsum-img", width = 1200, height = 1200) {
-    ajaxRequest('GET', `https://picsum.photos/id/${imgId}/info`)
-        .then((data) => {
-            imageToHTML(data, htmlId, width, height);
-        })
-        .catch(e => console.log(e));
-};
 function displayTable() {
     // get table body
     let tableBody = $('#mail-list .table-group-divider');
     // clear table content
     tableBody.empty();
 
-    // iterate through the mail list array
-    list.forEach(element => {
+    // iterate through the mail list
+    mailList.forEach(element => {
         // add table row
         let rowHtml = `<tr id="row-${element.mailTo}">`
         // prepend, so that the information is oldest email to newest email added
@@ -62,10 +30,10 @@ function displayTable() {
         element.idList.forEach(id => {
             // prepare list item element for image
             let html = `<img id="image-${id}"></li>`;
-            $(html).appendTo($(`#images-${element.mailTo}`));
+            $(html).prependTo($(`#images-${element.mailTo}`));
 
             // append image
-            getImageToHTML(id, `#image-${id}`, 200, 200);
+            ajaxToImg(id, `#image-${id}`, 200, 200);
         });
     });
 }
@@ -77,7 +45,7 @@ function validateEmail(email) {
 
 //document ready
 $(function () {
-    getImageToHTML();
+    ajaxToImg();
 });
 
 // add button email and image to list
@@ -99,11 +67,11 @@ $('#add-email').on('click', function (e) {
 
         // iter through list to check if email has been used before
         let found = false;
-        for (let i = 0; i < list.length; ++i) {
+        for (let i = 0; i < mailList.length; ++i) {
             // email used before
-            if (list[i].mailTo === email) {
+            if (mailList[i].mailTo === email) {
                 // add id to old entry
-                list[i].addId(id);
+                mailList[i].addId(id);
 
                 // stops new entry being added
                 found = true;
@@ -112,13 +80,13 @@ $('#add-email').on('click', function (e) {
         }
 
         // not found, add a new entry
-        if (!found) list.push(new MailImg(email, id));
+        if (!found) mailList.push(new MailImg(email, id));
 
         // display each entry in table
         displayTable();
 
         // new random image
-        getImageToHTML();
+        ajaxToImg();
     }
     else {
         //throw a warning
