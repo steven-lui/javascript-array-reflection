@@ -1,0 +1,1 @@
+export class MailImg{constructor(i="",t=""){this._mailTo=i,this._idList=[t]}get mailTo(){return this._mailTo}get idList(){return this._idList}set mailTo(i){this._mailTo=i}set idList(i){this._idList=i}addId=i=>this._idList.unshift(i);removeiD=i=>{this._idList.splice(this.idList.indexOf(i),1)}}
