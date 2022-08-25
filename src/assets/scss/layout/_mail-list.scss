@@ -1,6 +1,6 @@
 #mail-list {
-    td {
-        width: max-content;
+    table {
+        table-layout: fixed;
     }
 
     ul {
@@ -9,7 +9,7 @@
         margin: 0;
         display: flex;
         float: right;
-        clear:both;
+        clear: both;
         flex-wrap: wrap;
 
         li {
