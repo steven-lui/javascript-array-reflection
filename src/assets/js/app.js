@@ -65,7 +65,7 @@ function displayTable() {
             $(html).appendTo($(`#images-${element.mailTo}`));
 
             // append image
-            getImageToHTML(id, `#image-${id}`, 100, 100);
+            getImageToHTML(id, `#image-${id}`, 200, 200);
         });
     });
 }
@@ -81,7 +81,7 @@ $(function () {
 });
 
 // add button email and image to list
-$('#add').on('click', function (e) {
+$('#add-email').on('click', function (e) {
     //prevent page refresh
     e.preventDefault();
 
