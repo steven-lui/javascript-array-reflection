@@ -24,7 +24,8 @@ class MailImg {
         this._idList = ids;
     }
 
-    addId = id => this._idList.push(id);
+    //newest first
+    addId = id => this._idList.unshift(id);
 
     removeiD = id => {
         // take the index of url
@@ -78,6 +79,7 @@ function displayTable() {
     list.forEach(element => {
         // add table row
         let rowHtml = `<tr id="row-${element.mailTo}">`
+        // prepend, so that the information is oldest email to newest email added
         $(rowHtml).prependTo(tableBody);
 
         // email cell
@@ -90,7 +92,6 @@ function displayTable() {
 
         // add images
         element.idList.forEach(id => {
-            console.log("displayTable", id);
             // prepare list item element for image
             let html = `<li><img class="img-fluid" id="image-${id}"></li>`;
             $(html).appendTo($(`#images-${element.mailTo}`));
@@ -116,21 +117,42 @@ $('#add').on('click', function (e) {
     //prevent page refresh
     e.preventDefault();
 
-    //logic
-    if (validateEmail($('#user-email').val())) {
+    //email
+    let email = $('#user-email').val();
+    //sanitise function here
+
+    // if email is valid
+    if (validateEmail(email)) {
         // get the id of the image
         let id = $('#picsum-img').attr("src");
         // https://picsum.photos/id/x/1200/1200
         // we want x
         id = id.split('/')[4];
 
-        // push to list, so that new entry is first
-        list.push(new MailImg($('#user-email').val(), id));
+        // iter through list to check if email has been used before
+        let found = false;
+        for (let i = 0; i < list.length; ++i) {
+            // email used before
+            if (list[i].mailTo === email) {
+                // add id to old entry
+                list[i].addId(id);
 
-        // display list in table
+                // stops new entry being added
+                found = true;
+                break;
+            }
+        }
+
+        // not found, add a new entry
+        if (!found) list.push(new MailImg(email, id));
+
+        // display each entry in table
         displayTable();
 
-        // new image
+        // new random image
         getImageToHTML();
+    }
+    else {
+        //throw a warning
     }
 });
