@@ -44,8 +44,11 @@ export async function randomImg() {
     // attempt
     for (let i = 0; i < maxAttempts; ++i) {
         console.log(`Attempt ${i + 1} for randomImg()`);
+
+        let id = getRandomID();
+
         // request a random img
-        await ajaxRequest('GET', `https://picsum.photos/id/${getRandomID()}/info`)
+        await ajaxRequest('GET', `https://picsum.photos/id/${id}/info`)
             // success
             .then(data => {
                 exData = data;
@@ -54,7 +57,7 @@ export async function randomImg() {
             })
             //error
             .catch(data => {
-                console.log("Error:", data.responseText);
+                console.log(`Error for ID#${id}: ${data.responseText}`);
             });
         // stop loop on success
         if (found) {
