@@ -66,6 +66,7 @@ export async function randomImg() {
 
     // fail
     if (!found) {
+        $("#picsum-img").attr('src', './assets/img/not-found.jpg');
         console.log("Too many attempts, please try again");
     }
 }
