@@ -14,31 +14,31 @@ function generateSASS() {
         .pipe(sass().on('error', sass.logError)) //compile
         .pipe(uglifycss({ "uglyComments": true })) //uglify
         .pipe(rename({ suffix: '.min' })) //[...].min.css
-        .pipe(dest('dist/assets/css'));//pipe
+        .pipe(dest('docs/assets/css'));//pipe
 }
 
 function generateCSS() {
     return src('src/assets/css/**/*')
         .pipe(uglifycss({ "uglyComments": true }))
         .pipe(rename({ suffix: '.min' })) //[...].min.css
-        .pipe(dest('dist/assets/css'));
+        .pipe(dest('docs/assets/css'));
 }
 
 function generateHTML() {
     return src('src/index.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(dest('dist'));
+        .pipe(dest('docs'));
 }
 
 function generateIMG() {
     return src('src/assets/img/**/*')
-        .pipe(dest('dist/assets/img'));
+        .pipe(dest('docs/assets/img'));
 }
 
 function generateJS() {
     return src('src/assets/js/**/*')
         .pipe(uglify()) //uglify
-        .pipe(dest('dist/assets/js'));
+        .pipe(dest('docs/assets/js'));
 }
 
 // WATCH
