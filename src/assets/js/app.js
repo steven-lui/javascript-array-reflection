@@ -1,7 +1,7 @@
 'use strict';
 
 import { MailImg } from './MailImg.js';
-import { ajaxToImg } from './xhr.js';
+import { ajaxToImg, randomImg } from './xhr.js';
 
 let mailList = []; //list of MailImg
 
@@ -33,7 +33,7 @@ function displayTable() {
             $(html).prependTo($(`#images-${element.mailTo}`));
 
             // append image
-            ajaxToImg(id, `#image-${id}`, 200, 200);
+            ajaxToImg(id, `#image-${id}`, 50, 50);
         });
     });
 }
@@ -45,7 +45,7 @@ function validateEmail(email) {
 
 //document ready
 $(function () {
-    ajaxToImg();
+    randomImg();
 });
 
 // add button email and image to list
@@ -86,7 +86,7 @@ $('#add-email').on('click', function (e) {
         displayTable();
 
         // new random image
-        ajaxToImg();
+        randomImg();
     }
     else {
         //throw a warning
