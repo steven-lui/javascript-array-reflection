@@ -94,7 +94,7 @@ $('#add-email').on('click', function (e) {
         randomImg();
     }
     else {
-        console.log('Bad email:', $('#user-email').val());
+        // console.log('Bad email:', $('#user-email').val());
         
         // show warning label
         // don't use fancy animations, they stutter bad

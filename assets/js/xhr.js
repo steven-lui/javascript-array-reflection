@@ -35,7 +35,7 @@ export function ajaxToImg(imgId, htmlId, width, height) {
             applyDataToImg(data, htmlId, width, height);
         })
         .catch(error => {
-            console.log("Error:", error.responseText);
+            // console.log("Error:", error.responseText);
         });
 };
 
@@ -47,7 +47,7 @@ export async function randomImg() {
 
     // attempt
     for (let i = 0; i < maxAttempts; ++i) {
-        console.log(`Attempt ${i + 1} for randomImg()`);
+        // console.log(`Attempt ${i + 1} for randomImg()`);
 
         let id = getRandomID();
 
@@ -56,12 +56,12 @@ export async function randomImg() {
             // success
             .then(data => {
                 exData = data;
-                console.log("Image found:", data.id);
+                // console.log("Image found:", data.id);
                 found = true;
             })
             //error
             .catch(data => {
-                console.log(`Error for ID#${id}: ${data.responseText}`);
+                // console.log(`Error for ID#${id}: ${data.responseText}`);
             });
         // stop loop on success
         if (found) {
@@ -74,6 +74,6 @@ export async function randomImg() {
     // fail
     if (!found) {
         $("#picsum-img").attr('src', './assets/img/not-found.jpg');
-        console.log("Too many attempts, please try again");
+        // console.log("Too many attempts, please try again");
     }
 }
