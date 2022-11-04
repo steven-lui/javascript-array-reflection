@@ -1,8 +1,5 @@
 'use strict';
 
-import { MailImg } from './MailImg.js';
-import { ajaxToImg, randomImg } from './xhr.js';
-
 let mailList = []; //list of MailImg
 
 function displayTable() {
