@@ -39,7 +39,7 @@ function displayTable() {
 }
 
 //FIX
-function validateEmail(email) {
+function isEmailValid(email) {
     // https://www.w3resource.com/javascript/form/email-validation.php
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -63,7 +63,7 @@ $('#add-email').on('click', function (e) {
     // sanitise function here
 
     // if email is valid
-    if (validateEmail(email)) {
+    if (isEmailValid(email)) {
         // get the id of the image
         let id = $('#picsum-img').attr("src");
         // https://picsum.photos/id/x/1200/1200
@@ -90,6 +90,9 @@ $('#add-email').on('click', function (e) {
         // display each entry in table
         displayTable();
 
+        // remove warnings
+        $("#user-email").removeClass("error");
+
         // new random image
         randomImg();
     }
@@ -98,9 +101,9 @@ $('#add-email').on('click', function (e) {
         
         // show warning label
         // don't use fancy animations, they stutter bad
-        $(`label[for="user-email"]`).show().delay(5000).hide();
-
+        $(`label[for="user-email"]`).slideDown().delay(5000).slideUp();
+        $("#user-email").addClass("error");
         // focus email input
-        $("#user-email").focus();
+        $("#user-email").blur();
     }
 });

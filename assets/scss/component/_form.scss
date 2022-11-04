@@ -12,6 +12,11 @@ form {
         border-radius: 1em;
     }
 
+    .error {
+        border-color: #f00;
+        background: rgba(255, 0, 0, 0.2) !important;
+    }
+
     // when the button is next to the input, remove inner rounding
     @include media-breakpoint-up(md) {
 
