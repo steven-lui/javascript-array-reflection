@@ -18,7 +18,7 @@ function generateSASS() {
 }
 
 function generateJS() {
-    return src(['assets/js/xhr.js', 'assets/js/MailImg.js', 'assets/js/app.js'])
+    return src(['assets/js/xhr.js', 'assets/js/MailImg.js', 'assets/js/app.js', 'assets/js/newImg.js'])
         .pipe(concat('all.min.js'))
         .pipe(dest('assets/js'));
 }

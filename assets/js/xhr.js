@@ -16,9 +16,10 @@ function ajaxRequest(type, url, data = {}) {
 }
 
 function applyDataToImg(data, htmlId, width, height) {
-    // if its the main image, create element in its wrapper
+    // if its the main image, create element in its container
     if (htmlId === "#picsum-img") {
-        $(".picsum-img-wrapper").append('<img class="img-fluid" id="picsum-img" src="">');
+        // flush container of previous images before appending the new image
+        $(".new-image__image").empty().append('<img class="img-fluid" id="picsum-img" src="">');
     }
     $(htmlId).attr('src', `https://picsum.photos/id/${data.id}/${width}/${height}`);
     $(htmlId).attr('alt', `Credit to ${data.author}`);
