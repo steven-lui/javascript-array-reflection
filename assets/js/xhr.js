@@ -16,8 +16,12 @@ function ajaxRequest(type, url, data = {}) {
 }
 
 function applyDataToImg(data, htmlId, width, height) {
+    // if its the main image, create element in its wrapper
+    if (htmlId === "#picsum-img") {
+        $(".picsum-img-wrapper").append('<img class="img-fluid" id="picsum-img" src="">');
+    }
     $(htmlId).attr('src', `https://picsum.photos/id/${data.id}/${width}/${height}`);
-    $(htmlId).text('alt', `Image by ${data.author}`);
+    $(htmlId).attr('alt', `Credit to ${data.author}`);
 }
 
 // tested, it seems like max is 1082
