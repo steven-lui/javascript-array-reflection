@@ -38,6 +38,17 @@ function displayTable() {
     });
 }
 
+/** Adds the mailList to sessionStorage 
+ * NB: In the future you should have the mailList object be JSON, for higher performance
+*/
+function addToJSON() {
+    // wipe current version of item in storage
+    sessionStorage.removeItem("mailList");
+
+    // add new version to storage
+    sessionStorage.setItem("mailList", JSON.stringify(mailList));
+}
+
 //FIX
 function isEmailValid(email) {
     // https://www.w3resource.com/javascript/form/email-validation.php
@@ -90,6 +101,9 @@ $('#add-email').on('click', function (e) {
         // display each entry in table
         displayTable();
 
+        // add to sessionStorage
+        addToJSON();
+
         // remove warnings
         $("#user-email").removeClass("error");
 
@@ -98,7 +112,7 @@ $('#add-email').on('click', function (e) {
     }
     else {
         // console.log('Bad email:', $('#user-email').val());
-        
+
         // show warning label
         // don't use fancy animations, they stutter bad
         $(`label[for="user-email"]`).slideDown().delay(5000).slideUp();
@@ -106,4 +120,9 @@ $('#add-email').on('click', function (e) {
         // focus email input
         $("#user-email").blur();
     }
+});
+
+/** Before the session closes, warn the user of unsaved changes */
+$(window).on('beforeunload', function() {
+    return 'Are you sure you want to leave?';
 });
