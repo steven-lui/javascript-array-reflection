@@ -1,8 +1,5 @@
 'use strict';
 
-import { MailImg } from './MailImg.js';
-import { ajaxToImg, randomImg } from './xhr.js';
-
 let mailList = []; //list of MailImg
 
 function displayTable() {
@@ -41,8 +38,19 @@ function displayTable() {
     });
 }
 
+/** Adds the mailList to sessionStorage 
+ * NB: In the future you should have the mailList object be JSON, for higher performance
+*/
+function addToJSON() {
+    // wipe current version of item in storage
+    sessionStorage.removeItem("mailList");
+
+    // add new version to storage
+    sessionStorage.setItem("mailList", JSON.stringify(mailList));
+}
+
 //FIX
-function validateEmail(email) {
+function isEmailValid(email) {
     // https://www.w3resource.com/javascript/form/email-validation.php
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -66,7 +74,7 @@ $('#add-email').on('click', function (e) {
     // sanitise function here
 
     // if email is valid
-    if (validateEmail(email)) {
+    if (isEmailValid(email)) {
         // get the id of the image
         let id = $('#picsum-img').attr("src");
         // https://picsum.photos/id/x/1200/1200
@@ -93,17 +101,28 @@ $('#add-email').on('click', function (e) {
         // display each entry in table
         displayTable();
 
+        // add to sessionStorage
+        addToJSON();
+
+        // remove warnings
+        $("#user-email").removeClass("error");
+
         // new random image
         randomImg();
     }
     else {
-        console.log('Bad email:', $('#user-email').val());
-        
+        // console.log('Bad email:', $('#user-email').val());
+
         // show warning label
         // don't use fancy animations, they stutter bad
-        $(`label[for="user-email"]`).show().delay(5000).hide();
-
+        $(`label[for="user-email"]`).slideDown().delay(5000).slideUp();
+        $("#user-email").addClass("error");
         // focus email input
-        $("#user-email").focus();
+        $("#user-email").blur();
     }
+});
+
+/** Before the session closes, warn the user of unsaved changes */
+$(window).on('beforeunload', function() {
+    return 'Are you sure you want to leave?';
 });

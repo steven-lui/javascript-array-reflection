@@ -9,6 +9,12 @@ form {
     // change border color on input
     .form-control {
         border-color: $primary;
+        border-radius: 1em;
+    }
+
+    .error {
+        border-color: #f00;
+        background: rgba(255, 0, 0, 0.2) !important;
     }
 
     // when the button is next to the input, remove inner rounding
@@ -16,14 +22,14 @@ form {
 
         // text input
         .form-control {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
         }
 
         // submit button
         .btn {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
         }
     }
 

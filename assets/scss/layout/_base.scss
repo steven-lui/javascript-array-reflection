@@ -23,12 +23,10 @@ img {
     border: 1px solid $primary;
 }
 
-.picsum-img-wrapper {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
 .row {
     width: 100%;
+}
+
+.btn {
+    border-radius: 1em;
 }

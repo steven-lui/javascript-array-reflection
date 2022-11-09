@@ -8,6 +8,7 @@
     <title>JavaScript Array Reflection </title>
 
     <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -52,14 +53,21 @@
                 </ul>
             </div>
         </section>
+
         <div class="container">
             <div class="row gy-4 mb-4">
                 <!-- New image -->
                 <div class="col-md-6 col-lg-4 p-0 pe-md-4">
-                    <div class="picsum-img-wrapper">
-                        <img class="img-fluid" id="picsum-img">
+                    <div class="new-image__wrapper">
+                        <div class="new-image__image"></div>
+
+                        <!-- Force new image button -->
+                        <div class="btn btn-primary new-image__button">
+                            New Image
+                        </div>
                     </div>
                 </div>
+
                 <!-- forms and mail list -->
                 <div class="col-md-6 col-lg-8 border border-primary" style="border-radius:1rem;">
                     <!-- Assign email -->
@@ -90,8 +98,8 @@
                             <table class="table table-striped table-bordered border-primary">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="25%">Email</td>
-                                        <th scope="col">Images</td>
+                                        <th scope="col">Email
+                                        <th scope="col">Images
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -100,7 +108,7 @@
                         </div>
                     </section>
 
-                    <section id="send-all">
+                    <!-- <section id="send-all">
                         <div class="container">
                             <h2>Your Email</h2>
                             <form>
@@ -117,7 +125,7 @@
                                 </div>
                             </form>
                         </div>
-                    </section>
+                    </section> -->
                 </div>
             </div>
         </div>
@@ -127,7 +135,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- XML -->
-    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/all.min.js"></script>
 </body>
 
 </html>
