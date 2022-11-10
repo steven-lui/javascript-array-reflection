@@ -11,7 +11,7 @@ function displayTable() {
     // iterate through the mail list
     mailList.forEach(element => {
         //since mailto contains @, we will need to remove it
-        let htmlId = element.mailTo.replace('@', '-').replace('.', '-');
+        let htmlId = element.mailTo.replace('@', '-').replaceAll('.', '-');
 
         // add table row
         let rowHtml = `<tr id="row-${htmlId}">`
